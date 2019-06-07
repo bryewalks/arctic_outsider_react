@@ -22,6 +22,12 @@ class ArticlesNew extends React.Component {
     })
   }
 
+  setFile = (event) => {
+    if (event.target.files.length > 0) {
+      this.state.image = event.target.files[0];
+    }
+  }
+
   handleSubmit = event => {
     // var params = {
     //                           title: this.state.title, 
@@ -38,7 +44,11 @@ class ArticlesNew extends React.Component {
     formData.append('article[user_id]', this.state.user_id);
     formData.append('article[image]', this.state.image);
 
-    axios.post("/api/articles", formData, {headers: {'content-type': ''}})
+    const config = {     
+        headers: { 'content-type': `multipart/form-data; boundary=${formData._boundary}` }
+    }
+
+    axios.post("/api/articles", formData, config)
 
     .then(response => {
       console.log(response);
@@ -98,8 +108,8 @@ class ArticlesNew extends React.Component {
               type="file"
               name="image"
               value={this.state.image}
-              placeholder="Image"
-              onChange={this.handleChange}
+              placeholder="image"
+              onChange={this.setFile}
             />
             <br />
             <button>Submit</button>
