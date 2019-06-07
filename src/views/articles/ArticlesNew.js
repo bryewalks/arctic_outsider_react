@@ -24,18 +24,15 @@ class ArticlesNew extends React.Component {
 
   setFile = (event) => {
     if (event.target.files.length > 0) {
-      this.state.image = event.target.files[0];
+      this.setState({
+        image: event.target.files[0],
+        loaded: 0,
+      })
+      // this.state.image = event.target.files[0];
     }
   }
 
   handleSubmit = event => {
-    // var params = {
-    //                           title: this.state.title, 
-    //                           category: this.state.category, 
-    //                           body: this.state.body, 
-    //                           user_id: this.state.user_id,
-    //                           image: this.state.image
-    //                           }
 
     const formData = new FormData();
     formData.append('article[title]', this.state.title);
