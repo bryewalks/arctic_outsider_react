@@ -9,9 +9,9 @@ class ArticlesNew extends React.Component {
         category: "",
         body: "",
         user_id: "",
-        image: "",
+        image: null,
         errors: [],
-        error: ""
+        error: "",
     }
   }
 
@@ -22,42 +22,39 @@ class ArticlesNew extends React.Component {
     })
   }
 
-  setFile = (event) => {
-    if (event.target.files.length > 0) {
-      this.setState({
-        image: event.target.files[0],
-        loaded: 0,
-      })
-      // this.state.image = event.target.files[0];
+  handleFileChange = (event) => {
+    if (event.target.files[0]) {
+      this.setState({ image: event.target.files[0] })
     }
   }
 
   handleSubmit = event => {
+      const formData = new FormData();
+      formData.set('article[title]', this.state.title);
+      formData.set('article[category]', this.state.category);
+      formData.set('article[body]', this.state.body);
+      formData.set('article[user_id]', this.state.user_id);
+      if (this.state.image) {
+        formData.append('article[image]', this.state.image);
+      }
+      
 
-    const formData = new FormData();
-    formData.append('article[title]', this.state.title);
-    formData.append('article[category]', this.state.category);
-    formData.append('article[body]', this.state.body);
-    formData.append('article[user_id]', this.state.user_id);
-    formData.append('article[image]', this.state.image);
+      const config = {     
+          headers: { 'content-type': `multipart/form-data; boundary=${formData._boundary}` }
+      }
 
-    const config = {     
-        headers: { 'content-type': `multipart/form-data; boundary=${formData._boundary}` }
-    }
+      axios.post("/api/articles", formData, config)
 
-    axios.post("/api/articles", formData, config)
-
-    .then(response => {
-      console.log(response);
-      console.log(response.data);
-    }).catch(error => {
-        console.log(error.response.data);
-        this.setState({
-          error: error.response.data
-        })
-        localStorage.setItem("errors", error);
-      });
-
+      .then(response => {
+        console.log(response);
+        console.log(response.data);
+      }).catch(error => {
+          console.log(error.response.data);
+          this.setState({
+            error: error.response.data
+          })
+          localStorage.setItem("errors", error);
+        });
   }
 
   componentDidCatch(error, info) {
@@ -68,45 +65,44 @@ class ArticlesNew extends React.Component {
     return (
         <div>
           <h2>ArticlesNew</h2>
-          <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <input 
               type="text"
               name="title"
-              value={this.state.title}
               placeholder="title"
+              value={this.state.title}
               onChange={this.handleChange}
             />
             <br />
             <input 
               type="text"
               name="category"
-              value={this.state.category}
               placeholder="category"
+              value={this.state.category}
               onChange={this.handleChange}
             />
             <br />
             <input 
               type="text"
               name="body"
-              value={this.state.body}
               placeholder="body"
+              value={this.state.body}
               onChange={this.handleChange}
             />
             <br />
             <input 
               type="text"
               name="user_id"
-              value={this.state.user_id}
               placeholder="user"
+              value={this.state.user_id}
               onChange={this.handleChange}
             />
             <br />  
             <input 
               type="file"
               name="image"
-              value={this.state.image}
               placeholder="image"
-              onChange={this.setFile}
+              onChange={this.handleFileChange}
             />
             <br />
             <button>Submit</button>
