@@ -23,7 +23,6 @@ export default function ArticlesEdit(props) {
     setInitialized(true);
     }
   });
-  hello
 
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
