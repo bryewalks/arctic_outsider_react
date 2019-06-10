@@ -23,10 +23,12 @@ class ArticlesShow extends React.Component {
     return (
         <div>
           <h2>{this.state.article.title}</h2>
-          <img src={this.state.article.image_url} alt="image" />
+          <h2>{this.state.article.body}</h2>
+
+          <img src={this.state.article.image_url} alt="article" />
         </div>
       )
   }
 }
 
-export default ArticlesShow
+export default ArticlesShow 

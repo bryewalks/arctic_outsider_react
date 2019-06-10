@@ -1,115 +1,99 @@
-import React from 'react'
+import React, { useState } from 'react';
 import axios from 'axios'
 
-class ArticlesNew extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-        title: "",
-        category: "",
-        body: "",
-        user_id: "",
-        image: null,
-        errors: [],
-        error: "",
-    }
-  }
+export default function ArticlesNew(props) {
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [body, setBody] = useState('');
+  const [userId, setUserId] = useState('');
+  const [image, setImage] = useState(null);
+  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState('');
 
-  handleChange = (event) => {
-    const {name, value} = event.target
-    this.setState({
-      [name]: value
-    })
-  }
-
-  handleFileChange = (event) => {
-    if (event.target.files[0]) {
-      this.setState({ image: event.target.files[0] })
-    }
-  }
-
-  handleSubmit = event => {
-      const formData = new FormData();
-      formData.set('article[title]', this.state.title);
-      formData.set('article[category]', this.state.category);
-      formData.set('article[body]', this.state.body);
-      formData.set('article[user_id]', this.state.user_id);
-      if (this.state.image) {
-        formData.append('article[image]', this.state.image);
+    const handleFileChange = (event) => {
+      if (event.target.files[0]) {
+        setImage(event.target.files[0])
       }
-      
+    }
 
-      const config = {     
-          headers: { 'content-type': `multipart/form-data; boundary=${formData._boundary}` }
-      }
+    const handleSubmit = (event) => {
+        const formData = new FormData();
+        formData.set('article[title]', title);
+        formData.set('article[category]', category);
+        formData.set('article[body]', body);
+        formData.set('article[user_id]', userId);
+        if (image) {
+          formData.append('article[image]', image);
+        }
+        
 
-      axios.post("/api/articles", formData, config)
+        const config = {     
+            headers: { 'content-type': `multipart/form-data; boundary=${formData._boundary}` }
+        }
 
-      .then(response => {
-        console.log(response);
-        console.log(response.data);
-      }).catch(error => {
-          console.log(error.response.data);
-          this.setState({
-            error: error.response.data
-          })
-          localStorage.setItem("errors", error);
-        });
-  }
+        axios.post("/api/articles", formData, config)
 
-  componentDidCatch(error, info) {
-    console.log({error})
-  }
+        .then(response => {
+          console.log(response);
+          console.log(response.data);
+        }).catch(error => {
+            console.log(error.response.data);
+            setError({
+              error: error.response.data
+            })
+            localStorage.setItem("errors", error);
+          });
+    }
 
-  render() {
-    return (
-        <div>
-          <h2>ArticlesNew</h2>
-          <form onSubmit={this.handleSubmit}>
-            <input 
-              type="text"
-              name="title"
-              placeholder="title"
-              value={this.state.title}
-              onChange={this.handleChange}
-            />
-            <br />
-            <input 
-              type="text"
-              name="category"
-              placeholder="category"
-              value={this.state.category}
-              onChange={this.handleChange}
-            />
-            <br />
-            <input 
-              type="text"
-              name="body"
-              placeholder="body"
-              value={this.state.body}
-              onChange={this.handleChange}
-            />
-            <br />
-            <input 
-              type="text"
-              name="user_id"
-              placeholder="user"
-              value={this.state.user_id}
-              onChange={this.handleChange}
-            />
-            <br />  
-            <input 
-              type="file"
-              name="image"
-              placeholder="image"
-              onChange={this.handleFileChange}
-            />
-            <br />
-            <button>Submit</button>
-          </form>
-        </div>
-      )
-  }
+    const componentDidCatch = (error, info) => {
+      console.log({ error })
+    }
+
+      return (
+          <div>
+            <h2>ArticlesNew</h2>
+            <form onSubmit={ handleSubmit }>
+              <input 
+                type="text"
+                name="title"
+                placeholder="title"
+                value={ title }
+                onChange={ e => setTitle(e.target.value) }
+              />
+              <br />
+              <input 
+                type="text"
+                name="category"
+                placeholder="category"
+                value={ category }
+                onChange={ e => setCategory(e.target.value) }
+              />
+              <br />
+              <input 
+                type="text"
+                name="body"
+                placeholder="body"
+                value={ body }
+                onChange={ e => setBody(e.target.value) }
+              />
+              <br />
+              <input 
+                type="text"
+                name="userId"
+                placeholder="user"
+                value={ userId }
+                onChange={ e => setUserId(e.target.value) }
+              />
+              <br />  
+              <input 
+                type="file"
+                name="image"
+                placeholder="image"
+                onChange={ handleFileChange } 
+              />
+              <br />
+              <button>Submit</button>
+            </form>
+          </div>
+        )
 }
-
-export default ArticlesNew
