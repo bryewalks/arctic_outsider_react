@@ -2,42 +2,38 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 export default function ArticlesEdit(props) {
-  const [initialized, setInitialized] = useState(false);
-  const [article, setArticle] = useState({});
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [body, setBody] = useState('');
-  const [userId, setUserId] = useState('');
-  const [image, setImage] = useState(null);
-  const [errors, setErrors] = useState([]);
+  const [data, setData] = useState({});
+  const [errors, setErrors] = useState('');
   const [error, setError] = useState('');
   const { match: { params } } = props;
 
   useEffect(() => {
-    if (!initialized) {
-      axios.get(`/api/articles/${params.id}`)
-      .then(({ data }) => {
-        setArticle(data);
-        console.log(data);
-      });
-    setInitialized(true);
-    }
-  });
+      axios
+        .get(`/api/articles/${params.id}`)
+        .then(response => setData(response.data));
+  }, []);
 
-  const handleFileChange = (event) => {
-    if (event.target.files[0]) {
-      setImage(event.target.files[0])
-    }
+  // const handleFileChange = (event) => {
+  //   if (event.target.files[0]) {
+  //     setImage(event.target.files[0])
+  //   }
+  // }
+
+  const handleChange = (event, name) => {
+      const val = event.target.value;
+      setData(prevState => {
+        return { ...prevState, [name]: val}
+      }); 
   }
 
   const handleSubmit = (event) => {
       const formData = new FormData();
-      formData.set('article[title]', title);
-      formData.set('article[category]', category);
-      formData.set('article[body]', body);
-      formData.set('article[user_id]', userId);
-      if (image) {
-        formData.append('article[image]', image);
+      formData.set('article[title]', data.title);
+      formData.set('article[category]', data.category);
+      formData.set('article[body]', data.body);
+      formData.set('article[user_id]', '1');
+      if (data.image) {
+        formData.append('article[image]', data.image);
       }
       
 
@@ -45,58 +41,43 @@ export default function ArticlesEdit(props) {
           headers: { 'content-type': `multipart/form-data; boundary=${formData._boundary}` }
       }
 
-      axios.patch(`/api/articles/${params.id}/edit`, formData, config)
+      axios.patch(`/api/articles/${params.id}`, formData, config)
 
       .then(response => {
         console.log(response);
         console.log(response.data);
       }).catch(error => {
-          console.log(error.response.data);
-          setError({
-            error: error.response.data
-          })
-          localStorage.setItem("errors", error);
-        });
+      });
   }
 
     return (
         <div>
           <h2>ArticlesEdit</h2>
-          <form onSubmit={ handleSubmit }>
-            <h3>Title</h3>
             <input 
               type="text"
               name="title"
-              value={ article.title }
-              onChange={ e => setTitle(e.target.value) }
+              placeholder="title"
+              value={ data.title }
+              onChange={ e => {handleChange(e, 'title')}}
             />
             <br />
-            <h3>Category</h3>
             <input 
               type="text"
               name="category"
-              value={ article.category }
-              onChange={ e => setCategory(e.target.value) }
+              placeholder="category"
+              value={ data.category }
+              onChange={ e => {handleChange(e, 'category')}}
             />
             <br />
-            <h3>Body</h3>
             <input 
               type="text"
               name="body"
-              value={ body }
-              onChange={ e => setBody(e.target.value) }
+              placeholder="body"
+              value={ data.body }
+              onChange={ e => {handleChange(e, 'body')}}
             />
             <br />
-            <h3>Image</h3>
-            <img src={article.image_url} alt="article" />
-            <input 
-              type="file"
-              name="image"
-              onChange={ handleFileChange } 
-            />
-            <br />
-            <button>Submit</button>
-          </form>
+            <button onClick={ handleSubmit }>Submit</button>
         </div>
       )
 }
