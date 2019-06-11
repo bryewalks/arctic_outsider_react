@@ -9,7 +9,7 @@ export default function ArticlesShow(props) {
       axios
         .get(`/api/articles/${params.id}`)
         .then(response => setArticle(response.data));
-  }, []);
+  }, [params]);
 
   return (
       <div>

@@ -7,8 +7,6 @@ export default function ArticlesNew(props) {
   const [body, setBody] = useState('');
   const [userId, setUserId] = useState('');
   const [image, setImage] = useState(null);
-  const [errors, setErrors] = useState([]);
-  const [error, setError] = useState('');
 
     const handleFileChange = (event) => {
       if (event.target.files[0]) {
@@ -17,6 +15,7 @@ export default function ArticlesNew(props) {
     }
 
     const handleSubmit = (event) => {
+        event.preventDefault()
         const formData = new FormData();
         formData.set('article[title]', title);
         formData.set('article[category]', category);
@@ -34,14 +33,11 @@ export default function ArticlesNew(props) {
         axios.post("/api/articles", formData, config)
 
         .then(response => {
-          console.log(response);
           console.log(response.data);
         }).catch(error => {
+            console.log(error);
+            console.log(error.response.data.errors[0]);
         });
-    }
-
-    const componentDidCatch = (error, info) => {
-      console.log({ error })
     }
 
       return (

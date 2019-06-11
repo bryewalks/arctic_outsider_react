@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 export default function ArticlesEdit(props) {
-  const [data, setData] = useState({});
-  const [errors, setErrors] = useState('');
-  const [error, setError] = useState('');
+  const [data, setData] = useState({title: '', category: '', body: '', image_url: ''});
   const [image, setImage] = useState(null);
   const { match: { params } } = props;
 
@@ -12,7 +10,7 @@ export default function ArticlesEdit(props) {
       axios
         .get(`/api/articles/${params.id}`)
         .then(response => setData(response.data));
-  }, []);
+  }, [params]);
 
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
@@ -46,8 +44,9 @@ export default function ArticlesEdit(props) {
 
       .then(response => {
         console.log(response);
-        console.log(response.data);
       }).catch(error => {
+        console.log(error);
+        console.log(error.response.data.errors[0]);
       });
   }
 
