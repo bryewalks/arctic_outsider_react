@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 export default function ArticlesEdit(props) {
-  const [data, setData] = useState({});
-  const [errors, setErrors] = useState('');
-  const [error, setError] = useState('');
+  const [data, setData] = useState({title: '', category: '', body: '', image_url: ''});
+  const [image, setImage] = useState(null);
   const { match: { params } } = props;
 
   useEffect(() => {
       axios
         .get(`/api/articles/${params.id}`)
         .then(response => setData(response.data));
-  }, []);
+  }, [params]);
 
-  // const handleFileChange = (event) => {
-  //   if (event.target.files[0]) {
-  //     setImage(event.target.files[0])
-  //   }
-  // }
+  const handleFileChange = (event) => {
+    if (event.target.files[0]) {
+      setImage(event.target.files[0])
+    }
+  }
 
   const handleChange = (event, name) => {
       const val = event.target.value;
@@ -32,8 +31,8 @@ export default function ArticlesEdit(props) {
       formData.set('article[category]', data.category);
       formData.set('article[body]', data.body);
       formData.set('article[user_id]', '1');
-      if (data.image) {
-        formData.append('article[image]', data.image);
+      if (image) {
+        formData.append('article[image]', image);
       }
       
 
@@ -45,14 +44,16 @@ export default function ArticlesEdit(props) {
 
       .then(response => {
         console.log(response);
-        console.log(response.data);
       }).catch(error => {
+        console.log(error);
+        console.log(error.response.data.errors[0]);
       });
   }
 
     return (
         <div>
           <h2>ArticlesEdit</h2>
+            <p>Title</p>
             <input 
               type="text"
               name="title"
@@ -61,6 +62,7 @@ export default function ArticlesEdit(props) {
               onChange={ e => {handleChange(e, 'title')}}
             />
             <br />
+            <p>Category</p>
             <input 
               type="text"
               name="category"
@@ -69,12 +71,23 @@ export default function ArticlesEdit(props) {
               onChange={ e => {handleChange(e, 'category')}}
             />
             <br />
+            <p>Body</p>
             <input 
               type="text"
               name="body"
               placeholder="body"
               value={ data.body }
               onChange={ e => {handleChange(e, 'body')}}
+            />
+            <br />
+            <p>Image</p>
+            <img src={ data.image_url } alt="article" />
+            <br />
+            <input 
+              type="file"
+              name="image"
+              placeholder="image"
+              onChange={ handleFileChange } 
             />
             <br />
             <button onClick={ handleSubmit }>Submit</button>

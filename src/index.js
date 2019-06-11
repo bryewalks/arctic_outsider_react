@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import { Route,
-          NavLink, 
-          BrowserRouter as Router, 
-          Switch 
-        } from 'react-router-dom'
+// import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom'
+// import { Route,
+//           NavLink, 
+//           BrowserRouter as Router, 
+//           Switch 
+//         } from 'react-router-dom'
 import axios from 'axios'
 import * as serviceWorker from './serviceWorker';
 
