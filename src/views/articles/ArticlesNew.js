@@ -37,12 +37,7 @@ export default function ArticlesNew(props) {
           console.log(response);
           console.log(response.data);
         }).catch(error => {
-            console.log(error.response.data);
-            setError({
-              error: error.response.data
-            })
-            localStorage.setItem("errors", error);
-          });
+        });
     }
 
     const componentDidCatch = (error, info) => {

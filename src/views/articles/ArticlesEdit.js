@@ -5,6 +5,7 @@ export default function ArticlesEdit(props) {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState('');
   const [error, setError] = useState('');
+  const [image, setImage] = useState(null);
   const { match: { params } } = props;
 
   useEffect(() => {
@@ -15,9 +16,7 @@ export default function ArticlesEdit(props) {
 
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
-      setData(prevState => {
-        return { ...prevState, image: event.target.files[0]}
-      });
+      setImage(event.target.files[0])
     }
   }
 
@@ -34,8 +33,8 @@ export default function ArticlesEdit(props) {
       formData.set('article[category]', data.category);
       formData.set('article[body]', data.body);
       formData.set('article[user_id]', '1');
-      if (data.image) {
-        formData.append('article[image]', data.image);
+      if (image) {
+        formData.append('article[image]', image);
       }
       
 
@@ -81,6 +80,9 @@ export default function ArticlesEdit(props) {
               value={ data.body }
               onChange={ e => {handleChange(e, 'body')}}
             />
+            <br />
+            <p>Image</p>
+            <img src={ data.image_url } alt="article" />
             <br />
             <input 
               type="file"
