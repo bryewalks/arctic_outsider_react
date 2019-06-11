@@ -13,11 +13,13 @@ export default function ArticlesEdit(props) {
         .then(response => setData(response.data));
   }, []);
 
-  // const handleFileChange = (event) => {
-  //   if (event.target.files[0]) {
-  //     setImage(event.target.files[0])
-  //   }
-  // }
+  const handleFileChange = (event) => {
+    if (event.target.files[0]) {
+      setData(prevState => {
+        return { ...prevState, image: event.target.files[0]}
+      });
+    }
+  }
 
   const handleChange = (event, name) => {
       const val = event.target.value;
@@ -53,6 +55,7 @@ export default function ArticlesEdit(props) {
     return (
         <div>
           <h2>ArticlesEdit</h2>
+            <p>Title</p>
             <input 
               type="text"
               name="title"
@@ -61,6 +64,7 @@ export default function ArticlesEdit(props) {
               onChange={ e => {handleChange(e, 'title')}}
             />
             <br />
+            <p>Category</p>
             <input 
               type="text"
               name="category"
@@ -69,12 +73,20 @@ export default function ArticlesEdit(props) {
               onChange={ e => {handleChange(e, 'category')}}
             />
             <br />
+            <p>Body</p>
             <input 
               type="text"
               name="body"
               placeholder="body"
               value={ data.body }
               onChange={ e => {handleChange(e, 'body')}}
+            />
+            <br />
+            <input 
+              type="file"
+              name="image"
+              placeholder="image"
+              onChange={ handleFileChange } 
             />
             <br />
             <button onClick={ handleSubmit }>Submit</button>
