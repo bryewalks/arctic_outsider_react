@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export default function ArticlesNew(props) {
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [body, setBody] = useState('');
   const [userId, setUserId] = useState('');
@@ -18,6 +19,7 @@ export default function ArticlesNew(props) {
         event.preventDefault()
         const formData = new FormData();
         formData.set('article[title]', title);
+        formData.set('article[description]', description);
         formData.set('article[category]', category);
         formData.set('article[body]', body);
         formData.set('article[user_id]', userId);
@@ -54,11 +56,19 @@ export default function ArticlesNew(props) {
               <br />
               <input 
                 type="text"
-                name="category"
-                placeholder="category"
-                value={ category }
-                onChange={ e => setCategory(e.target.value) }
+                name="description"
+                placeholder="description"
+                value={ description }
+                onChange={ e => setDescription(e.target.value) }
               />
+              <br />
+              <select value={ category } onChange={ e => setCategory(e.target.value) } >
+                <option value="" disabled>Category</option>
+                <option value="snowmobiles">Snowmobiles</option>
+                <option value="sales">Sales</option>
+                <option value="blog">Blog</option>
+                <option value="races">Races</option>
+              </select>
               <br />
               <input 
                 type="text"

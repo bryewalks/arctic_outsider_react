@@ -12,14 +12,40 @@ export default function ArticlesShow(props) {
   }, [params]);
 
   return (
-      <div>
-        <h2>Title</h2>
-        <h3>{article.title}</h3>
-        <h2>Category</h2>
-        <h3>{article.category}</h3>
-        <h2>Body</h2>
-        <h3>{article.body}</h3>
-        <img src={article.image_url} alt="article" />
+
+    <div className="blog-header">
+      <section className="container">
+        <a href="#" className="customFadeInUp">
+          { article.title }
+
+          <span className="customFadeInUp">
+            { article.description }
+          </span>
+        </a>
+      </section>
+      <div className="bottom">
+        <div className="author">
+          <img className="avatar" src="images/uifaces/15.jpg" />
+          <div className="name">
+            By { article.user }
+            <br />
+            <i>{ article.created_at }</i>
+          </div>
+        </div>
+        <div className="featured">
+          { article.category }
+        </div>
       </div>
+    </div>
     )
 }
+
+// <div>
+//   <h2>Title</h2>
+//   <h3>{article.title}</h3>
+//   <h2>Category</h2>
+//   <h3>{article.category}</h3>
+//   <h2>Body</h2>
+//   <h3>{article.body}</h3>
+//   <img src={article.image_url} alt="article" />
+// </div>

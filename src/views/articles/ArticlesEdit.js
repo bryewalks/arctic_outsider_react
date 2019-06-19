@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 export default function ArticlesEdit(props) {
-  const [data, setData] = useState({title: '', category: '', body: '', image_url: ''});
+  const [data, setData] = useState({title: '', description: '', category: '', body: '', image_url: ''});
   const [image, setImage] = useState(null);
   const { match: { params } } = props;
 
@@ -28,6 +28,7 @@ export default function ArticlesEdit(props) {
   const handleSubmit = (event) => {
       const formData = new FormData();
       formData.set('article[title]', data.title);
+      formData.set('article[description]', data.description);
       formData.set('article[category]', data.category);
       formData.set('article[body]', data.body);
       formData.set('article[user_id]', '1');
@@ -60,6 +61,15 @@ export default function ArticlesEdit(props) {
               placeholder="title"
               value={ data.title }
               onChange={ e => {handleChange(e, 'title')}}
+            />
+            <br />
+            <p>Description</p>
+            <input 
+              type="text"
+              name="description"
+              placeholder="description"
+              value={ data.description }
+              onChange={ e => {handleChange(e, 'description')}}
             />
             <br />
             <p>Category</p>
