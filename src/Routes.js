@@ -11,11 +11,14 @@ import ArticlesShow from './views/articles/ArticlesShow'
 import ArticlesNew from './views/articles/ArticlesNew'
 import ArticlesIndex from './views/articles/ArticlesIndex'
 import ArticlesEdit from './views/articles/ArticlesEdit'
+import NavBar from './components/NavBar.js'
+
 
 
 export const Routes = () => {
   return (
     <div>
+      <NavBar />
       <Router>
         <div>
           <Switch>

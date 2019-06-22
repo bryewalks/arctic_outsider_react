@@ -15,6 +15,12 @@ export default function ArticlesShow(props) {
 
   const formatText = article.body.split("   ")
 
+  let articleVideo = null;
+
+  if (article.video_url) {
+    articleVideo = <BlogVideo videoUrl={ article.video_url }/>
+  }
+
   return (
     <div>
 
@@ -45,14 +51,14 @@ export default function ArticlesShow(props) {
           </div>
         </div>
         <br />
-        <BlogPostGallery />
+        <BlogPostGallery imageUrl={article.image_url} />
         <div className="blog-post-content">
           <div>
             {formatText.map((paragraph, index) => {
               return <p key={index}>{paragraph}</p>
             })}
           </div>
-          <BlogVideo />
+          { articleVideo }
         </div>
       </div>
     </div>

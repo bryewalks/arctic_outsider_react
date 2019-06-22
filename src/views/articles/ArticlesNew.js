@@ -7,6 +7,7 @@ export default function ArticlesNew(props) {
   const [category, setCategory] = useState('');
   const [body, setBody] = useState('');
   const [userId, setUserId] = useState('');
+  const [videoUrl, setVideoUrl] = useState('');
   const [image, setImage] = useState(null);
 
     const handleFileChange = (event) => {
@@ -23,6 +24,7 @@ export default function ArticlesNew(props) {
         formData.set('article[category]', category);
         formData.set('article[body]', body);
         formData.set('article[user_id]', userId);
+        formData.set('article[video_url]', videoUrl);
         if (image) {
           formData.append('article[image]', image);
         }
@@ -84,6 +86,14 @@ export default function ArticlesNew(props) {
                 placeholder="user"
                 value={ userId }
                 onChange={ e => setUserId(e.target.value) }
+              />
+              <br />
+              <input 
+                type="text"
+                name="videoUrl"
+                placeholder="Video Url"
+                value={ videoUrl }
+                onChange={ e => setVideoUrl(e.target.value) }
               />
               <br />  
               <input 
