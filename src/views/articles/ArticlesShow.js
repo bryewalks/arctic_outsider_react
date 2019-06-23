@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import BlogVideo from '../../components/BlogVideo.js'
-import BlogPostGallery from '../../components/BlogPostGallery.js'
+import ArticleTitle from 'components/articles/show/ArticleTitle.js'
+import ArticleContent from 'components/articles/show/ArticleContent.js'
+import ArticleHeader from 'components/articles/show/ArticleHeader.js'
+import ArticleGallery from 'components/articles/show/ArticleGallery.js'
+import ArticleVideo from 'components/articles/show/ArticleVideo.js'
 import axios from 'axios'
+import styled from 'styled-components'
 
 export default function ArticlesShow(props) {
   const [article, setArticle] = useState({body: ''});
@@ -13,55 +17,64 @@ export default function ArticlesShow(props) {
         .then(response => setArticle(response.data));
   }, [params]);
 
-  const formatText = article.body.split("   ")
-
   let articleVideo = null;
 
   if (article.video_url) {
-    articleVideo = <BlogVideo videoUrl={ article.video_url }/>
+    articleVideo = <ArticleVideo videoUrl={ article.video_url }/>
   }
 
-  return (
-    <div>
+  const BlogPost = styled.div`
+    margin-top: 70px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    @media (max-width: 767px) {
+      margin-top: 40px;
+    }
+    @media (min-width: 1200px) {
+      width: 880px;
 
-    <div className="blog-post">
-      <div className="container">
-        <h3 className="blog-post-title">
-          { article.title }
-        </h3>
-        <div className="blog-post-header">
-          <div className="blog-post-author">
-            <img src="/images/uifaces/9.jpg" />
-            By <span>{ article.user }</span>
-          </div>
-          <div className="blog-post-date">
-            Date <span>{ article.created_at }</span>
-          </div>
-          <div className="blog-post-share">
-            Share this post: 
-            <a href="#">
-              <i className="ion-social-twitter"></i>
-            </a>
-            <a href="#">
-              <i className="ion-social-facebook"></i>
-            </a>
-            <a href="#">
-              <i className="ion-social-buffer"></i>
-            </a>
-          </div>
-        </div>
-        <br />
-        <BlogPostGallery imageUrl={article.image_url} />
-        <div className="blog-post-content">
-          <div>
-            {formatText.map((paragraph, index) => {
-              return <p key={index}>{paragraph}</p>
-            })}
-          </div>
+    }
+  `
+
+  const Container = styled.div`
+    width: 100%;
+    @media (min-width: 576px) {
+      max-width: 540px;
+    }
+    @media (min-width: 768px) {
+      max-width: 720px;
+    }
+    @media (min-width: 992px) {
+      max-width: 960px;
+    }
+    @media (min-width: 1200px) {
+      max-width: 1140px;
+    }
+  `
+  return (
+      <BlogPost>
+        <Container>
+          <ArticleTitle title={ article.title } />
+          <ArticleHeader article={ article } />
+          <ArticleGallery imageUrl={ article.image_url } />
+          <ArticleContent article={ article } />
           { articleVideo }
-        </div>
-      </div>
-    </div>
-    </div>
+        </Container>
+      </BlogPost>
     )
 }
+
+// <div className="blog-post-share">
+//   Share this post: 
+//   <a href="#">
+//     <i className="ion-social-twitter"></i>
+//   </a>
+//   <a href="#">
+//     <i className="ion-social-facebook"></i>
+//   </a>
+//   <a href="#">
+//     <i className="ion-social-buffer"></i>
+//   </a>
+// </div>
