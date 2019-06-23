@@ -27,7 +27,7 @@ export default function ArticleContent(props) {
 
 
   return (
-    <Content> 
+    <Content>
       {formatText.map((paragraph, index) => {
         return <p key={index}>{paragraph}</p>
       })}

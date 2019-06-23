@@ -8,14 +8,14 @@ class LoginComponent extends React.Component {
     }
   }
 
-handleSubmit = (event) => {
+  handleSubmit = (event) => {
 
-}
+  }
 
-render() {
+  render() {
     return (
 
-      <form onSubmit={ this.handleSubmit }>
+      <form onSubmit={this.handleSubmit}>
         <input placeholder="Email" type="email" />
         <br />
         <input placeholder="password" type="password" />
@@ -23,7 +23,7 @@ render() {
         <button> Submit </button>
       </form>
 
-      )
+    )
   }
 }
 

@@ -8,19 +8,19 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 export default function ArticlesShow(props) {
-  const [article, setArticle] = useState({body: ''});
+  const [article, setArticle] = useState({ body: '' });
   const { match: { params } } = props;
 
   useEffect(() => {
-      axios
-        .get(`/api/articles/${params.id}`)
-        .then(response => setArticle(response.data));
+    axios
+      .get(`/api/articles/${params.id}`)
+      .then(response => setArticle(response.data));
   }, [params]);
 
   let articleVideo = null;
 
   if (article.video_url) {
-    articleVideo = <ArticleVideo videoUrl={ article.video_url }/>
+    articleVideo = <ArticleVideo videoUrl={article.video_url} />
   }
 
   const BlogPost = styled.div`
@@ -54,14 +54,14 @@ export default function ArticlesShow(props) {
     }
   `
   return (
-      <BlogPost>
-        <Container>
-          <ArticleTitle title={ article.title } />
-          <ArticleHeader article={ article } />
-          <ArticleGallery imageUrl={ article.image_url } />
-          <ArticleContent article={ article } />
-          { articleVideo }
-        </Container>
-      </BlogPost>
-    )
+    <BlogPost>
+      <Container>
+        <ArticleTitle title={article.title} />
+        <ArticleHeader article={article} />
+        <ArticleGallery imageUrl={article.image_url} />
+        <ArticleContent article={article} />
+        {articleVideo}
+      </Container>
+    </BlogPost>
+  )
 }

@@ -21,7 +21,7 @@ export default function ArticleVideo(props) {
 
   return (
     <Video>
-      <iframe src={ props.videoUrl } height="440" frameBorder="0"></iframe>
+      <iframe src={props.videoUrl} height="440" frameBorder="0"></iframe>
     </Video>
-    )
+  )
 }

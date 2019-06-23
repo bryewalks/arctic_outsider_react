@@ -30,14 +30,14 @@ export default function ArticleHeader(props) {
   `
 
   return (
-      <Header>
-        <Author>
-          <img src="/images/uifaces/9.jpg" />
-          By <span>{ props.article.user }</span>
-        </Author>
-        <Posted>
-          Posted <span>{ props.article.created_at }</span>
-        </Posted>
-      </Header>
-    )
+    <Header>
+      <Author>
+        <img src="/images/uifaces/9.jpg" />
+        By <span>{props.article.user}</span>
+      </Author>
+      <Posted>
+        Posted <span>{props.article.created_at}</span>
+      </Posted>
+    </Header>
+  )
 }

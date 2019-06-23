@@ -10,8 +10,8 @@ export default function ArticleTitle(props) {
   `
   return (
     <Title>
-      { props.title }
+      {props.title}
     </Title>
 
-    )
+  )
 }

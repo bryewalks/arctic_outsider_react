@@ -22,7 +22,7 @@ export default function BlogPostGallery(props) {
 
   return (
     <Gallery>
-      <Image src={ props.imageUrl } />
+      <Image src={props.imageUrl} />
     </Gallery>
-    )
+  )
 }
