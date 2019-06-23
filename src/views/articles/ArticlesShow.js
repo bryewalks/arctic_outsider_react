@@ -65,16 +65,3 @@ export default function ArticlesShow(props) {
       </BlogPost>
     )
 }
-
-// <div className="blog-post-share">
-//   Share this post: 
-//   <a href="#">
-//     <i className="ion-social-twitter"></i>
-//   </a>
-//   <a href="#">
-//     <i className="ion-social-facebook"></i>
-//   </a>
-//   <a href="#">
-//     <i className="ion-social-buffer"></i>
-//   </a>
-// </div>
