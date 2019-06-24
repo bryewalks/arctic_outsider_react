@@ -27,9 +27,9 @@ export default function ArticlesShow(props) {
     <Wrapper>
       <Container>
         <Title title={article.title} />
-        <Header article={article} />
+        <Header user={article.user} createdAt={article.created_at} />
         <Gallery imageUrl={article.image_url} />
-        <Body article={article} />
+        <Body text={article.body} />
         {videoPlayer}
       </Container>
     </Wrapper>

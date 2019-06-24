@@ -7,10 +7,10 @@ export default function Header(props) {
     <Wrapper>
       <Author>
         <img src="/images/uifaces/9.jpg" />
-        By <span>{props.article.user}</span>
+        By <span>{props.user}</span>
       </Author>
       <Posted>
-        Posted <span>{props.article.created_at}</span>
+        Posted <span>{props.createdAt}</span>
       </Posted>
     </Wrapper>
   )
