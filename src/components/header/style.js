@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-    margin-top: 20px;
-  `
+  margin-top: 20px;
+`
 
 export const Author = styled.div`
   color: #888;
