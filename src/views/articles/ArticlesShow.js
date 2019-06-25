@@ -8,7 +8,7 @@ import Player from 'components/player'
 import axios from 'axios'
 
 export default function ArticlesShow(props) {
-  const [article, setArticle] = useState({ body: '' });
+  const [article, setArticle] = useState({});
   const { match: { params } } = props;
 
   useEffect(() => {
