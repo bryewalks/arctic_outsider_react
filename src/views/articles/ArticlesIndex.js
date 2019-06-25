@@ -1,15 +1,12 @@
 import React from 'react'
-import { Wrapper, Container } from 'components/globals'
+import { Wrapper } from 'components/globals'
 import Title from 'components/title'
 
 class ArticlesIndex extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Container>
-          <Title title="hello" />
-          <h2>ArticlesIndex</h2>
-        </Container>
+        <Title title="Article Index" />
       </Wrapper>
     )
   }

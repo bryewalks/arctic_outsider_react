@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Wrapper, Container } from 'components/globals'
+import { Wrapper } from 'components/globals'
 import Title from 'components/title'
 import Header from 'components/header'
 import Gallery from 'components/gallery'
@@ -25,13 +25,11 @@ export default function ArticlesShow(props) {
 
   return (
     <Wrapper>
-      <Container>
-        <Title title={article.title} />
-        <Header user={article.user} createdAt={article.created_at} />
-        <Gallery imageUrl={article.image_url} />
-        <Body text={article.body} />
-        {videoPlayer}
-      </Container>
+      <Title title={article.title} />
+      <Header user={article.user} createdAt={article.created_at} />
+      <Gallery imageUrl={article.image_url} />
+      <Body text={article.body} />
+      {videoPlayer}
     </Wrapper>
   )
 }
