@@ -1,5 +1,5 @@
 import React from 'react'
-import { Wrapper, Container } from 'components/globals/style'
+import { Wrapper, Container } from 'components/globals'
 import Title from 'components/title'
 
 class ArticlesIndex extends React.Component {

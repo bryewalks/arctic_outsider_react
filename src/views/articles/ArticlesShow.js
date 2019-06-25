@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Wrapper, Container } from 'components/globals/style'
+import { Wrapper, Container } from 'components/globals'
 import Title from 'components/title'
 import Header from 'components/header'
 import Gallery from 'components/gallery'
