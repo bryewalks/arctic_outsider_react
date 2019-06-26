@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledForm = styled.form`
-	max-width: 450px;
+	max-width: 850px;
 	background: #FAFAFA;
 	padding: 30px;
 	margin: 50px auto;
@@ -21,7 +21,7 @@ export const StyledForm = styled.form`
   input[type="file"] {
     display: none;
   }
-  input[name="body"] {
+  textarea {
     width: 100%;
     height: 500px;
   }

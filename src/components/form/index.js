@@ -95,8 +95,7 @@ export default function Form(props) {
         <option value="races">Races</option>
       </select>
       <p>Body</p>
-      <input
-        type="text"
+      <textarea
         name="body"
         placeholder="body"
         value={article.body}

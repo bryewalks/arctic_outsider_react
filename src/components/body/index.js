@@ -3,7 +3,7 @@ import { Content } from './style'
 
 export default function Body(props) {
 
-  const formatText = props.text.split("   ")
+  const formatText = props.text.split('\n')
 
   return (
     <Content>
