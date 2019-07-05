@@ -9,10 +9,15 @@ export const Divider = styled.div`
     margin-top: 20px !important;
   }
 `
-
 export const Image = styled.img`
   display: block;
-  width: 50%;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
+  ${({ zoom }) => zoom && `
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    top: 50px;
+  `}
 `
