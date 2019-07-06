@@ -86,6 +86,14 @@ export default function Form(props) {
         value={article.description}
         onChange={e => { handleChange(e, 'description') }}
       />
+      <p>Video URL</p>
+      <input
+        type="text"
+        name="video_url"
+        placeholder="video url"
+        value={article.video_url}
+        onChange={e => { handleChange(e, 'video_url') }}
+      />
       <p>Category</p>
       <select value={article.category} onChange={e => { handleChange(e, 'category') }} >
         <option value="" disabled>Category</option>

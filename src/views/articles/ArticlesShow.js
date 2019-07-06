@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Wrapper } from 'components/globals'
+import { Container, Wrapper } from 'components/globals'
 import Title from 'components/title'
 import Header from 'components/header'
 import Gallery from 'components/gallery'
 import Body from 'components/body'
 import Player from 'components/player'
+import CommentSection from 'components/commentSection'
 import axios from 'axios'
 
 export default function ArticlesShow(props) {
-  const [article, setArticle] = useState({body: ''});
+  const [article, setArticle] = useState({image_url: '', body: '', comments: []});
   const { match: { params } } = props;
 
   useEffect(() => {
@@ -17,19 +18,16 @@ export default function ArticlesShow(props) {
       .then(response => setArticle(response.data));
   }, [params]);
 
-  let videoPlayer = null;
-
-  if (article.video_url) {
-    videoPlayer = <Player videoUrl={article.video_url} />
-  }
-
   return (
-    <Wrapper>
-      <Title title={article.title} />
-      <Header user={article.user} createdAt={article.created_at} />
-      <Gallery imageUrl={article.image_url} />
-      <Body text={article.body} />
-      {videoPlayer}
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        <Title title={article.title} />
+        <Header user={article.user} createdAt={article.created_at} />
+        <Gallery imageUrl={article.image_url} />
+        <Body text={article.body} />
+        <Player videoUrl={article.video_url} />
+      </Wrapper>
+      <CommentSection comments={article.comments} />
+    </Container>
   )
 }
