@@ -1,6 +1,5 @@
 import React from 'react'
 import Comment from 'components/comment'
-import { StyledComments } from './style'
 import { Container, Wrapper } from 'components/globals'
 
 export default function CommentSection(props) {
