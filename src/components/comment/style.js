@@ -6,19 +6,31 @@ export const CommentCard = styled.div`
   font-style: italic;
   background-color: white;
   height: auto;
-  position: relative;
-  border: 1px solid #767676;
+  box-shadow: 0 1px 4px rgba(0,0,0,.03);
   border-radius: 2px;
   color: #6b6b6b;
   line-height: 29px;
+  
 `
 
 export const CommentAuthor = styled.p`
-  /* position: absolute;
-  top: 0;
-  left: 12px; */
+  text-align: right;
+  padding-right: 10em;
+`
+
+export const CommentImage = styled.img`
+  border-radius: 100%;
+  width: 10%;
+  margin-top: 1.5em;
+  /* position: relative; */
 `
 
 export const CommentBody = styled.p`
+  position: relative;
+  top: 0;
+  text-align: center;
+`
+
+export const CommentCreated = styled.p`
 
 `
