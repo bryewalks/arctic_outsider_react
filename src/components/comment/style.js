@@ -22,7 +22,6 @@ export const CommentImage = styled.img`
   border-radius: 100%;
   width: 10%;
   margin-top: 1.5em;
-  /* position: relative; */
 `
 
 export const CommentBody = styled.p`
