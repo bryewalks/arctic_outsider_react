@@ -12,7 +12,7 @@ export const CommentCard = styled.div`
   line-height: 29px;
   
 `
-
+//
 export const CommentAuthor = styled.p`
   text-align: right;
   padding-right: 10em;
