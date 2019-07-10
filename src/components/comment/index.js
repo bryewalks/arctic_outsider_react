@@ -6,9 +6,9 @@ export default function Comment(props) {
   return (
     <CommentCard>
       <CommentImage src={props.comment.avatar_url ? props.comment.avatar_url : '/images/gray-user.png'} />
-      <CommentBody>{props.comment.body}</CommentBody>
-      <CommentAuthor>-{props.comment.user}</CommentAuthor>
+      <CommentAuthor>{props.comment.user}</CommentAuthor>
       <CommentCreated>Posted on {props.comment.created_at}</CommentCreated>
+      <CommentBody>{props.comment.body}</CommentBody>
     </CommentCard>
 
   )

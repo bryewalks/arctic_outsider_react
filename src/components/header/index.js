@@ -6,7 +6,7 @@ export default function Header(props) {
   return (
     <Wrapper>
       <Author>
-        <img src="/images/uifaces/9.jpg" />
+        <img src={props.avatarUrl ? props.avatarUrl : '/images/gray-user.png'} />
         By <span>{props.user}</span>
       </Author>
       <Posted>

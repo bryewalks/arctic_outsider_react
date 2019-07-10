@@ -17,12 +17,11 @@ export default function ArticlesShow(props) {
       .get(`/api/articles/${params.id}`)
       .then(response => setArticle(response.data));
   }, [params]);
-
   return (
     <Container>
       <Wrapper>
         <Title title={article.title} />
-        <Header user={article.user} createdAt={article.created_at} />
+        <Header user={article.user} createdAt={article.created_at} avatarUrl={article.avatar_url} />
         <Gallery imageUrl={article.image_url} />
         <Body text={article.body} />
         <Player videoUrl={article.video_url} />

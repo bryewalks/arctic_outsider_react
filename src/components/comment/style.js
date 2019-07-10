@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const CommentCard = styled.div`
   margin: 2px;
   padding: 2px 24px;
-  font-style: italic;
   background-color: white;
   height: auto;
   box-shadow: 0 1px 4px rgba(0,0,0,.03);
@@ -14,22 +13,25 @@ export const CommentCard = styled.div`
 `
 //
 export const CommentAuthor = styled.p`
-  text-align: right;
-  padding-right: 10em;
+  margin-bottom: 0px;
+  padding-top : 1.5em;
+  font-weight: bold;
 `
 
 export const CommentImage = styled.img`
   border-radius: 100%;
-  width: 10%;
+  width: 8%;
   margin-top: 1.5em;
+  margin-right: 1em;
+  margin-left: 0em;
+  float: left;
 `
 
 export const CommentBody = styled.p`
-  position: relative;
-  top: 0;
-  text-align: center;
+  margin-bottom: 0px;
+  font-style: italic;
 `
 
 export const CommentCreated = styled.p`
-
+  font-size: .8em;
 `
