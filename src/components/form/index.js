@@ -36,7 +36,6 @@ export default function Form(props) {
     formData.set('article[description]', article.description);
     formData.set('article[category]', article.category);
     formData.set('article[body]', article.body);
-    formData.set('article[user_id]', '1');
     formData.set('article[video_url]', article.video_url);
     if (image) {
       formData.append('article[image]', image);

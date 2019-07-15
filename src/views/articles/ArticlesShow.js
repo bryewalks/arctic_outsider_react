@@ -17,6 +17,7 @@ export default function ArticlesShow(props) {
       .get(`/api/articles/${params.id}`)
       .then(response => setArticle(response.data));
   }, [params]);
+  
   return (
     <Container>
       <Wrapper>
@@ -26,7 +27,7 @@ export default function ArticlesShow(props) {
         <Body text={article.body} />
         <Player videoUrl={article.video_url} />
       </Wrapper>
-      <CommentSection comments={article.comments} />
+      <CommentSection comments={article.comments} params={params}/>
     </Container>
   )
 }
