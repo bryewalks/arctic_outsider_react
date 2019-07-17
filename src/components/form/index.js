@@ -23,10 +23,7 @@ export default function Form(props) {
   }
 
   const handleChange = (event, name) => {
-    const val = event.target.value;
-    setArticle(prevState => {
-      return { ...prevState, [name]: val }
-    });
+    setArticle({...article, [name]: event.target.value});
   }
 
   const handleSubmit = (event) => {
