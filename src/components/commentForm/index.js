@@ -16,6 +16,7 @@ export default function CommentForm(props) {
     .then(response => {
       console.log(response.data);
       props.commentCallback(response.data);
+      setCommentBody('');
     }).catch(error => {
       console.log(error);
     });
