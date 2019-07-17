@@ -17,7 +17,11 @@ export default function ArticlesShow(props) {
       .get(`/api/articles/${params.id}`)
       .then(response => setArticle(response.data));
   }, [params]);
-  
+
+  const commentCallback = (comment) => {
+    setArticle({...article, comments: [...article.comments, comment]});
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -27,7 +31,7 @@ export default function ArticlesShow(props) {
         <Body text={article.body} />
         <Player videoUrl={article.video_url} />
       </Wrapper>
-      <CommentSection comments={article.comments} params={params}/>
+      <CommentSection commentCallback={commentCallback} comments={article.comments} params={params}/>
     </Container>
   )
 }

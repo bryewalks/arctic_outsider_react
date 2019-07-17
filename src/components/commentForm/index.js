@@ -15,9 +15,9 @@ export default function CommentForm(props) {
     axios.post("/api/comments", formData)
     .then(response => {
       console.log(response.data);
+      props.commentCallback(response.data);
     }).catch(error => {
       console.log(error);
-      //
     });
   }
 
