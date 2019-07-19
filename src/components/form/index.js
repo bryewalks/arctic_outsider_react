@@ -47,6 +47,7 @@ export default function Form(props) {
 
       .then(response => {
         console.log(response);
+        props.router.push(`/articles/${props.params.id}`);
       }).catch(error => {
         console.log(error);
         console.log(error.response.data.errors[0]);
@@ -57,6 +58,7 @@ export default function Form(props) {
 
       .then(response => {
         console.log(response.data);
+        props.router.push(`/articles/${response.data.id}`)
       }).catch(error => {
         console.log(error);
         console.log(error.response.data.errors[0]);

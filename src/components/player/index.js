@@ -5,7 +5,7 @@ export default function Player(props) {
 
   return (
     <Video>
-      <iframe src={props.videoUrl} height="440" frameBorder="0"></iframe>
+      <iframe title='video player' src={props.videoUrl} height="440" frameBorder="0"></iframe>
     </Video>
   )
 }

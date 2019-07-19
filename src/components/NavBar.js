@@ -5,7 +5,7 @@ export default function NavBar(props) {
     <nav className="navbar navbar-expand-lg navbar-light" role="navigation">
       <div className="container no-override">
         <a className="navbar-brand" href="index.html">
-          <img src="/images/logo-alt-b.png" className="d-none d-lg-inline mr-2 w-25" />
+          <img alt='' src="/images/logo-alt-b.png" className="d-none d-lg-inline mr-2 w-25" />
           Spacial
               </a>
         <button className="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">

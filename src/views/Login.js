@@ -1,13 +1,10 @@
 import React from 'react'
-// import axios from 'axios'
-import LoginComponent from 'components/LoginComponent'
+import LoginForm from 'components/loginForm'
 
-class Login extends React.Component {
-  render() {
+export default function ArticlesShow(props) {
     return (
-      <LoginComponent />
+      <div>
+        <LoginForm router={props.history} />
+      </div>
     )
-  }
 }
-
-export default Login

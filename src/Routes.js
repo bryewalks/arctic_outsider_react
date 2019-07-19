@@ -1,6 +1,5 @@
 import React from 'react';
 import './index.css';
-import App from './App';
 import { Route, 
           BrowserRouter as Router, 
           Switch 
@@ -22,7 +21,7 @@ export const Routes = () => {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={App} />
+            <Route exact path="/" component={ArticlesIndex} />
             <Route path="/login" component={Login} />
             <Route exact path="/articles" component={ArticlesIndex} />
             <Route path="/articles/new" component={ArticlesNew} />
@@ -35,5 +34,3 @@ export const Routes = () => {
     </div>
   )
 }
-
-            // <Route path="/resources" component={Resources} />

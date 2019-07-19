@@ -9,7 +9,7 @@ export default function ArticlesEdit(props) {
   return (
     <Wrapper>
       <Title title="Edit Article" />
-      <Form params={params} />
+      <Form params={params} router={props.history} />
     </Wrapper>
   )
 }

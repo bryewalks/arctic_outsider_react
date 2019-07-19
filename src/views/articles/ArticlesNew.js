@@ -8,7 +8,7 @@ export default function ArticlesNew(props) {
   return (
     <Wrapper>
       <Title title="New Article" />
-      <Form />
+      <Form router={props.history} />
     </Wrapper>
   )
 }

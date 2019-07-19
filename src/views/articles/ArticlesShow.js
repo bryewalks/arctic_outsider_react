@@ -5,6 +5,7 @@ import Header from 'components/header'
 import Gallery from 'components/gallery'
 import Body from 'components/body'
 import Player from 'components/player'
+import ArticleControls from 'components/articleControls'
 import CommentSection from 'components/commentSection'
 import axios from 'axios'
 
@@ -22,6 +23,11 @@ export default function ArticlesShow(props) {
     setArticle({...article, comments: [...article.comments, comment]});
   }
 
+  let videoPlayer = null;
+  if (article.video_url) {
+    videoPlayer = <Player videoUrl={article.video_url} />
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -29,7 +35,8 @@ export default function ArticlesShow(props) {
         <Header user={article.user} createdAt={article.created_at} avatarUrl={article.avatar_url} />
         <Gallery imageUrl={article.image_url} />
         <Body text={article.body} />
-        <Player videoUrl={article.video_url} />
+        {videoPlayer}
+        <ArticleControls router={props.history} params={params} />
       </Wrapper>
       <CommentSection commentCallback={commentCallback} comments={article.comments} params={params}/>
     </Container>
