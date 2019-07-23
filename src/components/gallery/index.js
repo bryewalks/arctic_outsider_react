@@ -10,7 +10,7 @@ export default function Gallery(props) {
 
   return (
     <Divider>
-      <Image src={props.imageUrl} onClick={() => toggleZoom()} zoom={imageZoom} />
+      <Image src={props.imageUrl ? props.imageUrl : '/images/arctic-cat.jpg'} onClick={() => toggleZoom()} zoom={imageZoom} />
     </Divider>
   )
 }

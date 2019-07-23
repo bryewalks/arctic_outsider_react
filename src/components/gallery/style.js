@@ -19,5 +19,6 @@ export const Image = styled.img`
     right: 0px;
     left: 0px;
     top: 50px;
+    z-index: 999;
   `}
 `

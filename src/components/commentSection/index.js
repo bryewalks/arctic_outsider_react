@@ -9,7 +9,7 @@ export default function CommentSection(props) {
     <Container color='#FAFAFA'>
       <Wrapper>
       <CommentForm commentCallback={props.commentCallback} params={props.params}/>
-      <p>Comments</p>
+      <p>{props.comments.length ? 'Comments' : ''}</p>
         {props.comments.map((comment, index) => {
           return <Comment comment={comment} key={index} />
         })}

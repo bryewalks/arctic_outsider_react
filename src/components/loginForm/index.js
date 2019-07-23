@@ -27,7 +27,6 @@ export default function LoginForm(props) {
         setEmail('');
         setPassword('');
       });
-
   }
   return (
     <Wrapper>
